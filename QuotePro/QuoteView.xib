@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="17E202" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="QuoteView" customModule="QuotePro" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJ9-5e-arM">
+                    <rect key="frame" x="0.0" y="508" width="320" height="60"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bf4-zm-uKg">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="60"/>
+                            <state key="normal" title="Image"/>
+                            <connections>
+                                <action selector="imageButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="edg-76-v7B"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41f-Nm-Pio">
+                            <rect key="frame" x="80" y="0.0" width="80" height="60"/>
+                            <state key="normal" title="Quote"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H3O-r3-j9X">
+                            <rect key="frame" x="160" y="0.0" width="80" height="60"/>
+                            <state key="normal" title="Cancel"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fxv-LD-GR7">
+                            <rect key="frame" x="240" y="0.0" width="80" height="60"/>
+                            <state key="normal" title="Save"/>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="41f-Nm-Pio" firstAttribute="width" secondItem="bf4-zm-uKg" secondAttribute="width" id="BIv-kK-IcK"/>
+                        <constraint firstAttribute="height" constant="60" id="J4p-jf-BPx"/>
+                        <constraint firstItem="Fxv-LD-GR7" firstAttribute="width" secondItem="bf4-zm-uKg" secondAttribute="width" id="McE-M3-ApV"/>
+                        <constraint firstItem="H3O-r3-j9X" firstAttribute="width" secondItem="bf4-zm-uKg" secondAttribute="width" id="uux-Kf-V5r"/>
+                    </constraints>
+                </stackView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="91y-qr-uhK">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="eJ9-5e-arM" secondAttribute="bottom" id="3iX-os-1wg"/>
+                <constraint firstAttribute="trailing" secondItem="91y-qr-uhK" secondAttribute="trailing" id="BO8-a7-tG0"/>
+                <constraint firstItem="91y-qr-uhK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Va6-l0-lOB"/>
+                <constraint firstItem="eJ9-5e-arM" firstAttribute="top" secondItem="91y-qr-uhK" secondAttribute="bottom" id="apE-3j-7Gr"/>
+                <constraint firstAttribute="trailing" secondItem="eJ9-5e-arM" secondAttribute="trailing" id="mmq-wI-VCP"/>
+                <constraint firstItem="eJ9-5e-arM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tyS-dO-KcJ"/>
+                <constraint firstItem="91y-qr-uhK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="x3i-cJ-pzM"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backImage" destination="91y-qr-uhK" id="thR-bm-9fi"/>
+                <outlet property="cancelButton" destination="H3O-r3-j9X" id="oFh-bb-i9r"/>
+                <outlet property="imageButton" destination="bf4-zm-uKg" id="wT0-ux-RCY"/>
+                <outlet property="quoteButton" destination="41f-Nm-Pio" id="OhC-3n-khv"/>
+                <outlet property="saveButton" destination="Fxv-LD-GR7" id="TRg-VD-FTT"/>
+            </connections>
+        </view>
+    </objects>
+</document>
