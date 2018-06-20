@@ -11,20 +11,22 @@ import UIKit
 class QuoteView: UIView
 {
     
-    let networking = Networking()
     var quoteData = QuoteData()
     
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var quoteLabel: UILabel!
     @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var imageButton: UIButton!
     @IBOutlet weak var quoteButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
-    
-    
     override func awakeFromNib()
     {
         super.awakeFromNib()
+        
+        backImage.image = quoteData.image
+        
         imageButton.layer.borderWidth = 1.5
         imageButton.layer.borderColor = UIColor.init(red: 90.0/255, green: 200.0/255, blue: 250.0/255, alpha: 1.0).cgColor
         
@@ -40,7 +42,15 @@ class QuoteView: UIView
     
     @IBAction func imageButtonPressed(_ sender: UIButton)
     {
-        quoteData = networking.fetchImage()
-        backImage.image = quoteData.image
+        Networking.shared.fetchImage
+        {
+            image in
+            
+            DispatchQueue.main.async
+            {
+                self.quoteData.image = image
+                self.backImage.image = image
+            }
+        }
     }
 }
