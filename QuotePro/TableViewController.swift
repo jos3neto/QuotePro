@@ -11,13 +11,15 @@ import UIKit
 class TableViewController: UITableViewController
 {
     //MARK: Properties
+    let quoteVC = UIViewController()
     var quoteView: QuoteView!
-    let quoteVC = UIViewController()    
+    var dataArray = [QuoteData]()
     
     //MARK: Methods
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        tableView.dataSource = self
         
         let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewQuote))
         self.navigationItem.rightBarButtonItem = button
@@ -31,34 +33,28 @@ class TableViewController: UITableViewController
     {
         present(quoteVC, animated: true, completion: nil)
     }
-
     
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    override func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return dataArray.count
     }
     
-    override func didReceiveMemoryWarning()
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        super.didReceiveMemoryWarning()
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        cell.textLabel!.text = dataArray[indexPath.row].quote
+        cell.detailTextLabel!.text = dataArray[indexPath.row].author
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -104,5 +100,9 @@ class TableViewController: UITableViewController
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    override func didReceiveMemoryWarning()
+    {
+        super.didReceiveMemoryWarning()
+    }
 }

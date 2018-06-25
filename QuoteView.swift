@@ -10,7 +10,6 @@ import UIKit
 
 class QuoteView: UIView
 {
-    
     var quoteData = QuoteData()
     
     @IBOutlet weak var authorLabel: UILabel!
@@ -26,6 +25,8 @@ class QuoteView: UIView
         super.awakeFromNib()
         
         backImage.image = quoteData.image
+        quoteLabel.text = quoteData.quote
+        authorLabel.text = quoteData.author
         
         imageButton.layer.borderWidth = 1.5
         imageButton.layer.borderColor = UIColor.init(red: 90.0/255, green: 200.0/255, blue: 250.0/255, alpha: 1.0).cgColor
@@ -52,5 +53,39 @@ class QuoteView: UIView
                 self.backImage.image = image
             }
         }
+    }
+    
+    @IBAction func quoteButtonPressed(_ sender: UIButton)
+    {
+        Networking.shared.fetchQuote
+        {
+            json in
+            
+            DispatchQueue.main.async
+            {
+                self.quoteData.quote = json["quoteText"]!
+                self.quoteLabel.text = json["quoteText"]!
+                self.quoteData.author = json["quoteAuthor"]!
+                self.authorLabel.text = json["quoteAuthor"]!
+            }
+        }
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: UIButton)
+    {
+        let quoteVC = self.next! as! UIViewController
+        let navController = quoteVC.presentingViewController as! UINavigationController
+        let tableVC = navController.viewControllers.first as! TableViewController
+        
+        tableVC.dataArray.append(quoteData)
+        tableVC.tableView.reloadData()
+        //print(tableVC.dataArray.first.author)
+        quoteVC.dismiss(animated: true, completion:nil)
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: UIButton)
+    {
+        let quoteVC = self.next! as! UIViewController
+        quoteVC.dismiss(animated: true, completion: nil)
     }
 }
