@@ -19,7 +19,7 @@ class TableViewController: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        tableView.dataSource = self
+        //tableView.dataSource = self
         
         let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewQuote))
         self.navigationItem.rightBarButtonItem = button
@@ -55,7 +55,12 @@ class TableViewController: UITableViewController
         return cell
     }
     
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let activityVC = UIActivityViewController(activityItems: [dataArray[indexPath.row].snapshot!], applicationActivities: nil)
+        present(activityVC, animated: true, completion: nil)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

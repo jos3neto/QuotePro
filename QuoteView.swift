@@ -77,15 +77,25 @@ class QuoteView: UIView
         let navController = quoteVC.presentingViewController as! UINavigationController
         let tableVC = navController.viewControllers.first as! TableViewController
         
+        quoteData.snapshot = self.snapshot()
         tableVC.dataArray.append(quoteData)
         tableVC.tableView.reloadData()
         //print(tableVC.dataArray.first.author)
-        quoteVC.dismiss(animated: true, completion:nil)
+        quoteVC.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIButton)
     {
         let quoteVC = self.next! as! UIViewController
         quoteVC.dismiss(animated: true, completion: nil)
+    }
+    
+    func snapshot() -> UIImage
+    {
+        UIGraphicsBeginImageContextWithOptions(self.backImage.frame.size, false, 0.0)
+        backImage.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return image
     }
 }
